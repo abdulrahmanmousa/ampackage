@@ -77,6 +77,7 @@ program
       const templatesDir = getTemplatesDir();
       const targetDir = getCurrentWorkingDir();
       const destDir = options.dest;
+      let hasErrors = false;
       
       for (const name of names) {
         const sourceFile = path.join(templatesDir, pluralizeType(type), name + getFileExtension(type));
@@ -85,6 +86,7 @@ program
         // Check if template exists
         if (!(await fs.pathExists(sourceFile))) {
           console.error(`❌ Template not found: ${type}/${name}`);
+          hasErrors = true;
           continue;
         }
         
@@ -101,6 +103,10 @@ program
         // Copy file
         await fs.copy(sourceFile, targetFile);
         console.log(`✅ Added ${type}: ${name} → ${targetFile}`);
+      }
+      
+      if (hasErrors) {
+        process.exit(1);
       }
     } catch (error) {
       console.error('❌ Error adding template:', error.message);
