@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "name": "local",
+      "type": "local",
+      "path": "./templates",
+      "default": true
+    },
+    {
+      "name": "company-ui",
+      "type": "github",
+      "url": "https://github.com/your-company/ui-templates.git",
+      "branch": "main",
+      "path": "templates"
+    },
+    {
+      "name": "design-system",
+      "type": "github", 
+      "url": "https://github.com/your-org/design-system.git",
+      "branch": "develop",
+      "path": "src/components"
+    }
+  ],
+  "cache": {
+    "enabled": true,
+    "ttl": 3600000
+  }
+}
